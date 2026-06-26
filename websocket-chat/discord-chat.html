@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discord風チャット</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="login-overlay" id="login-overlay">
+      <div class="login-card">
+        <h2>ログイン</h2>
+        <p>ユーザー名とパスワードを入力してください</p>
+        <input id="login-username" type="text" maxlength="12" placeholder="ユーザー名" />
+        <input id="login-password" type="password" maxlength="20" placeholder="パスワード" />
+        <button id="login-btn" type="button">ログイン</button>
+        <p class="login-hint">※ 初回は任意の名前とパスワードで登録できます</p>
+      </div>
+    </div>
+
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">MyCloud</div>
+        <div class="server-list">
+          <div class="server active">M</div>
+          <div class="server">C</div>
+          <div class="server">+</div>
+        </div>
+        <div class="channel-panel">
+          <div class="channel-title">チャンネル</div>
+          <ul class="channel-list" id="channel-list"></ul>
+          <div class="channel-controls">
+            <input id="new-channel-name" type="text" maxlength="20" placeholder="新しいチャンネル名" />
+            <button id="create-channel-btn" type="button">作成</button>
+          </div>
+          <button id="delete-channel-btn" class="danger-btn" type="button">現在のチャンネルを削除</button>
+        </div>
+      </aside>
+
+      <main class="chat-area">
+        <header class="chat-header">
+          <div>
+            <h1 id="channel-title"># general</h1>
+            <p>リアルタイムで会話しよう</p>
+          </div>
+          <div class="header-actions">
+            <div class="search-box">
+              <input id="message-search" type="text" placeholder="メッセージを検索" />
+            </div>
+            <button id="theme-toggle-btn" class="theme-toggle-btn" type="button">🌙</button>
+            <span id="member-count">0人</span>
+            <span id="status" class="status disconnected">未接続</span>
+            <button id="logout-btn" class="logout-btn" type="button">ログアウト</button>
+          </div>
+        </header>
+
+        <section class="pinned-messages" id="pinned-messages"></section>
+        <section class="messages" id="messages"></section>
+        <div class="typing-indicator" id="typing-indicator">　</div>
+
+        <div class="composer">
+          <div class="identity-bar">
+            <input id="username" type="text" maxlength="12" value="Guest" placeholder="ニックネーム" />
+            <button id="connect-btn" type="button">接続</button>
+          </div>
+          <div class="emoji-bar">
+            <button class="emoji-btn" type="button" data-emoji="😀">😀</button>
+            <button class="emoji-btn" type="button" data-emoji="😄">😄</button>
+            <button class="emoji-btn" type="button" data-emoji="❤️">❤️</button>
+            <button class="emoji-btn" type="button" data-emoji="🎉">🎉</button>
+            <button class="emoji-btn" type="button" data-emoji="👍">👍</button>
+          </div>
+          <div id="reply-preview"></div>
+          <form class="chat-input" id="chat-form">
+            <textarea id="message-input" placeholder="メッセージを入力..." rows="1"></textarea>
+            <label class="image-btn" for="image-input">画像</label>
+            <input id="image-input" type="file" accept="image/*" hidden />
+            <button type="submit">送信</button>
+          </form>
+        </div>
+      </main>
+
+      <aside class="member-panel">
+        <div class="member-header">メンバー</div>
+        <ul class="user-list" id="user-list"></ul>
+        <div class="admin-panel" id="admin-panel" hidden>
+          <div class="member-header">管理者</div>
+          <div class="admin-panel-title">ユーザー管理</div>
+          <ul class="admin-user-list" id="admin-user-list"></ul>
+        </div>
+      </aside>
+    </div>
+
+    <script src="client.js"></script>
+  </body>
+</html>
